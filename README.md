@@ -16,7 +16,7 @@ mini-commerce/
     ├── config/zookeeper/         注册中心配置
     ├── scripts/                  本地基础服务脚本
     ├── datas/database/           可提交的初始化 SQL
-    ├── local-services/           下载的程序（不提交 Git）
+    ├── local-services/           下载的基础服务程序（不提交 Git）
     └── docs/                     学习文档
 ```
 
@@ -120,7 +120,7 @@ curl 'http://localhost:8080/goods/list?shopId=1'
 
 localhost 是当前电脑上的服务地址，与仓库路径无关；改端口时也需调整调用方地址。保留仓库内部结构即可移动或改名仓库。ZooKeeper 必须用统一脚本启动，相对 dataDir 才有固定基准。
 
-.idea、target、下载的 ZooKeeper 发行包、运行数据和日志均被 Git 忽略；本机文件仍保留。新电脑重新导入 Maven、下载发行包并初始化数据库。
+.idea、target、ZooKeeper 发行包、运行数据和日志均被 Git 忽略；本机文件仍保留。新电脑安装 JDK、MySQL、Maven，下载 ZooKeeper，重新导入 Maven 并初始化数据库后即可启动。
 
 ## 文档与测试
 

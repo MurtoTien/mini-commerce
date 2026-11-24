@@ -1,12 +1,12 @@
 # 本地基础服务
 
-本目录用于存放下载的第三方程序，不提交发行包、JAR、日志或运行数据。clone 后需要自行准备。
+本目录用于存放下载的第三方程序。ZooKeeper 发行包、依赖 JAR、日志和运行数据不提交 Git；clone 后需要自行下载。仓库保留使用说明、统一启动脚本和配置。
 
 ## ZooKeeper
 
-1. 从 [Apache ZooKeeper 官方下载页](https://zookeeper.apache.org/releases.html)获取二进制发行包（本项目原使用 3.9.7，文件夹名 apache-zookeeper-3.9.7-bin）。
-2. 解压到本目录，确认存在 apache-zookeeper-3.9.7-bin/bin/zkServer.sh 和 lib 下的 JAR。保留完整发行包。
-3. 使用 JDK 21，在仓库根目录执行：
+1. 从 [Apache ZooKeeper 官方下载页](https://zookeeper.apache.org/releases.html)获取二进制发行包（本项目使用 3.9.7）。
+2. 解压到本目录，确认存在 apache-zookeeper-3.9.7-bin/bin/zkServer.sh 和 lib 下的依赖 JAR。
+3. 安装 JDK 21 后，在仓库根目录执行：
 
 ```bash
 bash backend/scripts/zookeeper.sh start

@@ -32,7 +32,9 @@ replay_pid*
 .env
 .env.local
 
-# Runtime state and downloaded service distributions
+# Runtime state
 /backend/datas/zookeeper-data/
 /backend/datas/zookeeper-logs/
+
+# Downloaded ZooKeeper distributions stay local.
 /backend/local-services/apache-zookeeper-*/
