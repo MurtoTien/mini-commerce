@@ -22,3 +22,17 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+
+# Local IDE files and generated output
+.DS_Store
+.idea/
+*.iml
+**/target/
+*.pid
+.env
+.env.local
+
+# Runtime state and downloaded service distributions
+/backend/datas/zookeeper-data/
+/backend/datas/zookeeper-logs/
+/backend/local-services/apache-zookeeper-*/

@@ -1,0 +1,42 @@
+-- 每个应用管理自己的逻辑数据库，同一个 MySQL 实例即可。
+CREATE DATABASE IF NOT EXISTS shop_db CHARACTER SET utf8mb4;
+CREATE DATABASE IF NOT EXISTS account_db CHARACTER SET utf8mb4;
+CREATE DATABASE IF NOT EXISTS goods_db CHARACTER SET utf8mb4;
+
+CREATE TABLE IF NOT EXISTS account_db.user_account (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    login_name VARCHAR(64) NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    nickname VARCHAR(100) NOT NULL,
+    avatar_url VARCHAR(1000),
+    status TINYINT NOT NULL DEFAULT 1,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    UNIQUE KEY uk_login_name (login_name),
+    CONSTRAINT chk_account_status CHECK (status IN (0, 1))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS goods_db.goods (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    shop_id BIGINT NOT NULL,
+    name VARCHAR(200) NOT NULL,
+    description TEXT,
+    price_cent BIGINT NOT NULL,
+    stock INT NOT NULL DEFAULT 0,
+    status TINYINT NOT NULL DEFAULT 0,
+    version BIGINT NOT NULL DEFAULT 0,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    KEY idx_shop_status_id (shop_id, status, id),
+    CONSTRAINT chk_goods_price CHECK (price_cent >= 0),
+    CONSTRAINT chk_goods_stock CHECK (stock >= 0),
+    CONSTRAINT chk_goods_status CHECK (status IN (0, 1))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS shop_db.shop (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    description VARCHAR(500),
+    shop_type VARCHAR(30) NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
